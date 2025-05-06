@@ -1,0 +1,14 @@
+:root {
+  --vivid-pink: oklch(69.02% 0.277 332.77);
+
+  --gray-900: oklch(19.37% 0.006 300.98);
+  --gray-700: oklch(36.98% 0.014 302.71);
+  --gray-400: oklch(70.9% 0.015 304.04);
+  --gray-50: rgb(250, 249, 251);
+
+  --primary-color: var(--vivid-pink);
+  --text-color: var(--gray-700);
+  --border-color: var(--gray-400);
+  --bg-color: var(--gray-50);
+  --focus-shadow: rgba(25, 118, 210, 0.2);
+}
