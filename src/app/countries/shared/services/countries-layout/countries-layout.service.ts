@@ -7,16 +7,13 @@ export class CountriesLayoutService {
   private readonly breakpointObserver = inject(BreakpointObserver);
   private readonly MOBILE_BREAKPOINT = '(max-width: 839px)';
 
-  // Track if we're in mobile layout
   private isMobile$ = this.breakpointObserver
     .observe(this.MOBILE_BREAKPOINT)
     .pipe(map((result) => result.matches));
 
-  // Track the currently selected item
   private selectedItemId = new BehaviorSubject<string | null>(null);
   readonly selectedItemId$ = this.selectedItemId.asObservable();
 
-  // Combined state for UI decisions
   layoutState$: Observable<{
     isMobile: boolean;
     hasSelectedItem: boolean;
@@ -32,8 +29,6 @@ export class CountriesLayoutService {
       map(([isMobile, selectedItemId]) => {
         const hasSelectedItem = selectedItemId !== null;
 
-        // In desktop mode, always show both (or just list if nothing selected)
-        // In mobile mode, show either list or details based on selection
         return {
           isMobile,
           hasSelectedItem,
