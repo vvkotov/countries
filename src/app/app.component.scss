@@ -1,26 +1,29 @@
-h1 {
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1rem;
+  margin: 0;
+  gap: 24px;
+}
+
+.heading {
   font-size: 3.125rem;
-  color: var(--gray-900);
+  color: var(--primary-color);
   font-weight: 500;
   line-height: 100%;
   letter-spacing: -0.125rem;
   margin: 0;
 }
 
-p {
-  margin: 0;
-  color: var(--gray-700);
+.subheading {
+  color: var(--text-color);
+  margin-bottom: 0;
 }
 
-main {
-  width: 100%;
-  min-height: 100%;
+.content {
+  flex: 1;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 1rem;
-  position: relative;
-  gap: 24px;
 }
 
 .pill-group {
@@ -85,18 +88,4 @@ main {
 
 .social-links a:hover svg path {
   fill: var(--gray-900);
-}
-
-@media screen and (max-width: 650px) {
-  .content {
-    flex-direction: column;
-    width: max-content;
-  }
-
-  .divider {
-    height: 1px;
-    width: 100%;
-    background: var(--red-to-pink-to-purple-horizontal-gradient);
-    margin-block: 1.5rem;
-  }
 }
