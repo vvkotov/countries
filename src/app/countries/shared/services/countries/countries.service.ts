@@ -6,9 +6,9 @@ import { inject, Injectable } from '@angular/core';
 })
 export class CountriesService {
   private readonly httpClient = inject(HttpClient);
-  private readonly baseUrl = 'https://restcountries.com/v3.1';
+  private readonly baseUrl = 'https://api.disneyapi.dev/character';
 
   getAllCountres() {
-    return this.httpClient.get(`${this.baseUrl}/all?fields=name,flags`);
+    return this.httpClient.get(`${this.baseUrl}`);
   }
 }
