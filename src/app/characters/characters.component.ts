@@ -7,19 +7,34 @@ import {
 
 import { CharactersListComponent } from './characters-list';
 import { CharacterDetailsComponent } from './character-details';
-import { CharactersApiService } from './shared/services/characters-api';
+import {
+  CharactersStoreModule,
+  CharactersStoreFacadeService,
+} from './shared/store';
 
 @Component({
   selector: 'characters',
-  imports: [CharactersListComponent, CharacterDetailsComponent],
+  imports: [
+    CharactersListComponent,
+    CharacterDetailsComponent,
+    CharactersStoreModule,
+  ],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharactersComponent implements OnInit {
-  private charactersApiService = inject(CharactersApiService);
+  private charactersStoreFacadeService = inject(CharactersStoreFacadeService);
+
+  readonly $list = this.charactersStoreFacadeService.$items;
+  readonly $isListLoading = this.charactersStoreFacadeService.$isListLoading;
+  readonly $currentPage = this.charactersStoreFacadeService.$currentPage;
+  readonly $nextPageUrl = this.charactersStoreFacadeService.$nextPageUrl;
+  readonly $previousPageUrl =
+    this.charactersStoreFacadeService.$previousPageUrl;
+  readonly $totalPages = this.charactersStoreFacadeService.$totalPages;
 
   ngOnInit(): void {
-    this.charactersApiService.getCharacters().subscribe();
+    this.charactersStoreFacadeService.loadFirstPage();
   }
 }
