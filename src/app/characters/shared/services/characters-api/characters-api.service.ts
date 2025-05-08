@@ -18,4 +18,8 @@ export class CharactersApiService {
       `${this.baseUrl}?page=1&pageSize=10`
     );
   }
+
+  getPageByUrl(url: string): Observable<PaginatedResponse<Character>> {
+    return this.httpClient.get<PaginatedResponse<Character>>(url);
+  }
 }

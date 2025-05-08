@@ -5,19 +5,14 @@ import {
   output,
 } from '@angular/core';
 
-import { Character } from '../shared/models';
-import { CharactersListItemComponent } from './characters-list-item';
-import { CharactersListPaginationComponent } from './characters-list-pagination';
-
 @Component({
-  selector: 'characters-list',
-  imports: [CharactersListItemComponent, CharactersListPaginationComponent],
-  templateUrl: './characters-list.component.html',
-  styleUrl: './characters-list.component.scss',
+  selector: 'characters-list-pagination',
+  imports: [],
+  templateUrl: './characters-list-pagination.component.html',
+  styleUrl: './characters-list-pagination.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CharactersListComponent {
-  $characters = input<Character[]>([], { alias: 'characters' });
+export class CharactersListPaginationComponent {
   $currentPage = input<number>(1, { alias: 'currentPage' });
   $totalPages = input<number>(1, { alias: 'totalPages' });
   $nextPageUrl = input<string | null>(null, { alias: 'nextPageUrl' });

@@ -37,4 +37,12 @@ export class CharactersComponent implements OnInit {
   ngOnInit(): void {
     this.charactersStoreFacadeService.loadFirstPage();
   }
+
+  onNextPageClick() {
+    this.charactersStoreFacadeService.loadNextPage();
+  }
+
+  onPreviousPageClick() {
+    this.charactersStoreFacadeService.loadPreviousPage();
+  }
 }

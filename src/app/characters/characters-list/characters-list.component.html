@@ -1,3 +1,12 @@
 @for (character of $characters(); track character._id) {
 <characters-list-item [character]="character" />
 }
+
+<characters-list-pagination
+  [currentPage]="$currentPage()"
+  [totalPages]="$totalPages()"
+  [nextPageUrl]="$nextPageUrl()"
+  [previousPageUrl]="$previousPageUrl()"
+  (nextPageClicked)="onNextPageClick()"
+  (previousPageClicked)="onPreviousPageClick()"
+/>

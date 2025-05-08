@@ -1,3 +1,12 @@
-<characters-list class="list" [characters]="$list()" />
+<characters-list
+  class="list"
+  [characters]="$list()"
+  [currentPage]="$currentPage()"
+  [totalPages]="$totalPages()"
+  [nextPageUrl]="$nextPageUrl()"
+  [previousPageUrl]="$previousPageUrl()"
+  (nextPageClicked)="onNextPageClick()"
+  (previousPageClicked)="onPreviousPageClick()"
+/>
 
 <character-details class="details" />

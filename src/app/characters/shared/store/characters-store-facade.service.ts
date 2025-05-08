@@ -29,4 +29,12 @@ export class CharactersStoreFacadeService {
   loadFirstPage(): void {
     this.store$.dispatch(CharactersActions.loadCharacters());
   }
+
+  loadNextPage(): void {
+    this.store$.dispatch(CharactersActions.loadNextPage());
+  }
+
+  loadPreviousPage(): void {
+    this.store$.dispatch(CharactersActions.loadPreviousPage());
+  }
 }

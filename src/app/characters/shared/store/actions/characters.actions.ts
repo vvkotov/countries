@@ -11,5 +11,15 @@ export const CharactersActions = createActionGroup({
       response: PaginatedResponse<Character>;
     }>(),
     'Load Characters Failure': props<{ error: unknown }>(),
+    'Load Next Page': emptyProps(),
+    'Load Next Page Success': props<{
+      response: PaginatedResponse<Character>;
+    }>(),
+    'Load Next Page Failure': props<{ error: unknown }>(),
+    'Load Previous Page': emptyProps(),
+    'Load Previous Page Success': props<{
+      response: PaginatedResponse<Character>;
+    }>(),
+    'Load Previous Page Failure': props<{ error: unknown }>(),
   },
 });

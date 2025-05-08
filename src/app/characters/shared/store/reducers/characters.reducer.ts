@@ -31,13 +31,30 @@ const loadCharactersSuccess = (
 
 export const charactersReducer = createReducer(
   initialState,
-  on(CharactersActions.loadCharacters, (state) => ({
-    ...state,
-    isListLoading: true,
-  })),
-  on(CharactersActions.loadCharactersSuccess, loadCharactersSuccess),
-  on(CharactersActions.loadCharactersFailure, (state) => ({
-    ...state,
-    isListLoading: false,
-  }))
+  on(
+    CharactersActions.loadCharacters,
+    CharactersActions.loadNextPage,
+    CharactersActions.loadPreviousPage,
+    (state) => ({
+      ...state,
+      isListLoading: true,
+    })
+  ),
+
+  on(
+    CharactersActions.loadCharactersSuccess,
+    CharactersActions.loadNextPageSuccess,
+    CharactersActions.loadPreviousPageSuccess,
+    loadCharactersSuccess
+  ),
+
+  on(
+    CharactersActions.loadCharactersFailure,
+    CharactersActions.loadNextPageFailure,
+    CharactersActions.loadPreviousPageFailure,
+    (state) => ({
+      ...state,
+      isListLoading: false,
+    })
+  )
 );
