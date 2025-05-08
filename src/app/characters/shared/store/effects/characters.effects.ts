@@ -1,11 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { concatLatestFrom } from '@ngrx/operators';
 import { catchError, map, concatMap, withLatestFrom } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { CharactersActions } from '../actions/characters.actions';
 import { CharactersApiService } from '../../services/characters-api';
 import { CharactersStoreFacadeService } from '../characters-store-facade.service';
+import { getPreviousPageUrl } from '../selectors/characters.selectors';
 @Injectable()
 export class CharactersEffects {
   private readonly actions$ = inject(Actions);
@@ -33,9 +35,9 @@ export class CharactersEffects {
   loadNextPage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CharactersActions.loadNextPage),
-      withLatestFrom(this.charactersStoreFacadeService.$nextPageUrl()!),
+      withLatestFrom(this.charactersStoreFacadeService.nextPageUrl$),
       concatMap(([_, nextPageUrl]) =>
-        this.charactersApiService.getPageByUrl(nextPageUrl).pipe(
+        this.charactersApiService.getPageByUrl(nextPageUrl!).pipe(
           map((response) =>
             CharactersActions.loadNextPageSuccess({ response })
           ),
@@ -50,9 +52,11 @@ export class CharactersEffects {
   loadPreviousPage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CharactersActions.loadPreviousPage),
-      withLatestFrom(this.charactersStoreFacadeService.$previousPageUrl()!),
+      concatLatestFrom(
+        () => this.charactersStoreFacadeService.previousPageUrl$
+      ),
       concatMap(([_, previousPageUrl]) =>
-        this.charactersApiService.getPageByUrl(previousPageUrl).pipe(
+        this.charactersApiService.getPageByUrl(previousPageUrl!).pipe(
           map((response) =>
             CharactersActions.loadPreviousPageSuccess({ response })
           ),

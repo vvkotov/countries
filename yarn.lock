@@ -1788,6 +1788,13 @@
   dependencies:
     tslib "^2.0.0"
 
+"@ngrx/operators@^19.1.0":
+  version "19.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/operators/-/operators-19.1.0.tgz#269cc90a3cfc40d6858b5f337b3acd56d4ccd830"
+  integrity sha512-gpo69FnoAF69X68pk9eWFHB630xqerBYkF68wOFMciLOV2im3b/fAf+0sRvnQJmVtG/8jO0IPVdvLqa1TbWmPA==
+  dependencies:
+    tslib "^2.3.0"
+
 "@ngrx/schematics@^19.1.0":
   version "19.1.0"
   resolved "https://registry.npmjs.org/@ngrx/schematics/-/schematics-19.1.0.tgz"

@@ -26,6 +26,7 @@ const loadCharactersSuccess = (
     data: response.data,
     totalPages: response.info.totalPages,
     nextPageUrl: response.info.nextPage,
+    previousPageUrl: response.info.previousPage,
   };
 };
 
@@ -41,11 +42,38 @@ export const charactersReducer = createReducer(
     })
   ),
 
+  on(CharactersActions.loadCharactersSuccess, loadCharactersSuccess),
+
   on(
-    CharactersActions.loadCharactersSuccess,
     CharactersActions.loadNextPageSuccess,
+    (
+      state: CharactersState,
+      { response }: { response: PaginatedResponse<Character> }
+    ): CharactersState => {
+      const updatedCommonFields = loadCharactersSuccess(state, { response });
+      const currentPage = updatedCommonFields.currentPage + 1;
+
+      return {
+        ...updatedCommonFields,
+        currentPage,
+      };
+    }
+  ),
+
+  on(
     CharactersActions.loadPreviousPageSuccess,
-    loadCharactersSuccess
+    (
+      state: CharactersState,
+      { response }: { response: PaginatedResponse<Character> }
+    ): CharactersState => {
+      const updatedCommonFields = loadCharactersSuccess(state, { response });
+      const currentPage = updatedCommonFields.currentPage - 1;
+
+      return {
+        ...updatedCommonFields,
+        currentPage,
+      };
+    }
   ),
 
   on(

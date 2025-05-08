@@ -12,6 +12,7 @@ import {
   getItems,
   getTotalPages,
 } from './selectors/characters.selectors';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class CharactersStoreFacadeService {
@@ -22,8 +23,11 @@ export class CharactersStoreFacadeService {
   $currentPage: Signal<number> = this.store$.selectSignal(getCurrentPage);
   $nextPageUrl: Signal<string | null> =
     this.store$.selectSignal(getNextPageUrl);
+  nextPageUrl$: Observable<string | null> = this.store$.select(getNextPageUrl);
   $previousPageUrl: Signal<string | null> =
     this.store$.selectSignal(getPreviousPageUrl);
+  previousPageUrl$: Observable<string | null> =
+    this.store$.select(getPreviousPageUrl);
   $totalPages: Signal<number> = this.store$.selectSignal(getTotalPages);
 
   loadFirstPage(): void {
