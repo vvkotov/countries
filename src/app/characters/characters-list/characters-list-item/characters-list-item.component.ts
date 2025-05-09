@@ -11,4 +11,5 @@ import { Character } from '../../shared/models';
 })
 export class CharactersListItemComponent {
   $character = input<Character | null>(null, { alias: 'character' });
+  $isLoading = input<boolean>(true, { alias: 'isLoading' });
 }

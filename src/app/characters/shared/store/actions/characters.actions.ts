@@ -21,5 +21,6 @@ export const CharactersActions = createActionGroup({
       response: PaginatedResponse<Character>;
     }>(),
     'Load Previous Page Failure': props<{ error: unknown }>(),
+    'Set Selected Character': props<{ character: Character }>(),
   },
 });

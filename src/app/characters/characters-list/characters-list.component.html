@@ -1,5 +1,14 @@
-@for (character of $characters(); track character._id) {
-<characters-list-item [character]="character" />
+<header class="header">
+  <h1 class="heading">Welcome to Disney characters App</h1>
+  <p class="subheading">Here you can get information on Disney characters.</p>
+</header>
+
+@for (character of $list(); track character._id) {
+<characters-list-item
+  [character]="character"
+  [isLoading]="$isListLoading()"
+  (click)="onCharacterClick(character)"
+/>
 }
 
 <characters-list-pagination

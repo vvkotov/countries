@@ -8,4 +8,5 @@ export interface CharactersState {
   totalPages: number;
   currentPage: number;
   selectedCharacter: null | Character;
+  isDataLoaded: boolean;
 }

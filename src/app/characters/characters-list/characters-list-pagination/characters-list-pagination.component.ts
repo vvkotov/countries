@@ -4,10 +4,11 @@ import {
   input,
   output,
 } from '@angular/core';
+import { ButtonComponent } from '@shared/components/button';
 
 @Component({
   selector: 'characters-list-pagination',
-  imports: [],
+  imports: [ButtonComponent],
   templateUrl: './characters-list-pagination.component.html',
   styleUrl: './characters-list-pagination.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -19,7 +19,8 @@
     "module": "ES2022",
     "baseUrl": "./",
     "paths": {
-      "@shared/models/*": ["src/app/shared/models/*"]
+      "@shared/models/*": ["src/app/shared/models/*"],
+      "@shared/components/*": ["src/app/shared/components/*"]
     }
   },
   "angularCompilerOptions": {

@@ -30,3 +30,11 @@ export const getTotalPages = createSelector(
   selectCharactersState,
   ({ totalPages }) => totalPages
 );
+export const getSelectedCharacter = createSelector(
+  selectCharactersState,
+  ({ selectedCharacter }) => selectedCharacter
+);
+export const getIsDataLoaded = createSelector(
+  selectCharactersState,
+  ({ isDataLoaded }) => isDataLoaded
+);

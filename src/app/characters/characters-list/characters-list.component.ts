@@ -1,36 +1,56 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Character } from '../shared/models';
 import { CharactersListItemComponent } from './characters-list-item';
 import { CharactersListPaginationComponent } from './characters-list-pagination';
+import {
+  CharactersStoreFacadeService,
+  CharactersStoreModule,
+} from '../shared/store';
 
 @Component({
   selector: 'characters-list',
-  imports: [CharactersListItemComponent, CharactersListPaginationComponent],
+  imports: [
+    CharactersListItemComponent,
+    CharactersListPaginationComponent,
+    CharactersStoreModule,
+  ],
   templateUrl: './characters-list.component.html',
   styleUrl: './characters-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharactersListComponent {
-  $characters = input<Character[]>([], { alias: 'characters' });
-  $currentPage = input<number>(1, { alias: 'currentPage' });
-  $totalPages = input<number>(1, { alias: 'totalPages' });
-  $nextPageUrl = input<string | null>(null, { alias: 'nextPageUrl' });
-  $previousPageUrl = input<string | null>(null, { alias: 'previousPageUrl' });
+  private readonly router = inject(Router);
+  private readonly charactersStoreFacadeService = inject(
+    CharactersStoreFacadeService
+  );
 
-  nextPageClicked = output<void>();
-  previousPageClicked = output<void>();
+  readonly $list = this.charactersStoreFacadeService.$items;
+  readonly $isListLoading = this.charactersStoreFacadeService.$isListLoading;
+  readonly $currentPage = this.charactersStoreFacadeService.$currentPage;
+  readonly $nextPageUrl = this.charactersStoreFacadeService.$nextPageUrl;
+  readonly $previousPageUrl =
+    this.charactersStoreFacadeService.$previousPageUrl;
+  readonly $totalPages = this.charactersStoreFacadeService.$totalPages;
+  readonly $isDataLoaded = this.charactersStoreFacadeService.$isDataLoaded;
+
+  ngOnInit(): void {
+    if (!this.$isDataLoaded()) {
+      this.charactersStoreFacadeService.loadFirstPage();
+    }
+  }
 
   onNextPageClick() {
-    this.nextPageClicked.emit();
+    this.charactersStoreFacadeService.loadNextPage();
   }
 
   onPreviousPageClick() {
-    this.previousPageClicked.emit();
+    this.charactersStoreFacadeService.loadPreviousPage();
+  }
+
+  onCharacterClick(character: Character) {
+    this.charactersStoreFacadeService.setSelectedCharacter(character);
+    this.router.navigate(['/character', character._id]);
   }
 }

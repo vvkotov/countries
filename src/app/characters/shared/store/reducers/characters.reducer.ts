@@ -14,6 +14,13 @@ export const initialState: CharactersState = {
   currentPage: 1,
   selectedCharacter: null,
   isListLoading: false,
+  isDataLoaded: false,
+};
+
+const fixProtocol = (url: string | null): string | null => {
+  if (!url) return null;
+
+  return url.replace('http://', 'https://');
 };
 
 const loadCharactersSuccess = (
@@ -25,8 +32,9 @@ const loadCharactersSuccess = (
     isListLoading: false,
     data: response.data,
     totalPages: response.info.totalPages,
-    nextPageUrl: response.info.nextPage,
-    previousPageUrl: response.info.previousPage,
+    nextPageUrl: fixProtocol(response.info.nextPage),
+    previousPageUrl: fixProtocol(response.info.previousPage),
+    isDataLoaded: true,
   };
 };
 
@@ -84,5 +92,10 @@ export const charactersReducer = createReducer(
       ...state,
       isListLoading: false,
     })
-  )
+  ),
+
+  on(CharactersActions.setSelectedCharacter, (state, { character }) => ({
+    ...state,
+    selectedCharacter: character,
+  }))
 );

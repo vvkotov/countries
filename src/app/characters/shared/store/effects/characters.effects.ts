@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { concatLatestFrom } from '@ngrx/operators';
 import { catchError, map, concatMap, withLatestFrom } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -52,9 +51,7 @@ export class CharactersEffects {
   loadPreviousPage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CharactersActions.loadPreviousPage),
-      concatLatestFrom(
-        () => this.charactersStoreFacadeService.previousPageUrl$
-      ),
+      withLatestFrom(this.charactersStoreFacadeService.previousPageUrl$),
       concatMap(([_, previousPageUrl]) =>
         this.charactersApiService.getPageByUrl(previousPageUrl!).pipe(
           map((response) =>

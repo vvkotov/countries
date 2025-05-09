@@ -1,1 +1,5 @@
+@if ($isLoading()) {
+<div class="skeleton"></div>
+} @else {
 <div>{{ $character()?.name }}</div>
+}

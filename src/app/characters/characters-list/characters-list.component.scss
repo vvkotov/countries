@@ -3,3 +3,23 @@
   flex-direction: column;
   gap: 8px;
 }
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  font-size: 3.125rem;
+  color: var(--primary-color);
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.125rem;
+  margin: 0;
+}
+
+.subheading {
+  color: var(--text-color);
+  margin-bottom: 0;
+}

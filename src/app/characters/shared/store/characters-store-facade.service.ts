@@ -11,6 +11,8 @@ import {
   getIsListLoading,
   getItems,
   getTotalPages,
+  getSelectedCharacter,
+  getIsDataLoaded,
 } from './selectors/characters.selectors';
 import { Observable } from 'rxjs';
 
@@ -29,6 +31,9 @@ export class CharactersStoreFacadeService {
   previousPageUrl$: Observable<string | null> =
     this.store$.select(getPreviousPageUrl);
   $totalPages: Signal<number> = this.store$.selectSignal(getTotalPages);
+  $selectedCharacter: Signal<Character | null> =
+    this.store$.selectSignal(getSelectedCharacter);
+  $isDataLoaded: Signal<boolean> = this.store$.selectSignal(getIsDataLoaded);
 
   loadFirstPage(): void {
     this.store$.dispatch(CharactersActions.loadCharacters());
@@ -40,5 +45,9 @@ export class CharactersStoreFacadeService {
 
   loadPreviousPage(): void {
     this.store$.dispatch(CharactersActions.loadPreviousPage());
+  }
+
+  setSelectedCharacter(character: Character): void {
+    this.store$.dispatch(CharactersActions.setSelectedCharacter({ character }));
   }
 }

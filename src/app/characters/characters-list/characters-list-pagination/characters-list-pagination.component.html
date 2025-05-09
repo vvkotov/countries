@@ -1,4 +1,6 @@
 <button
+  class="pagination-button"
+  dsn-button
   [disabled]="$previousPageUrl() === null"
   (click)="onPreviousPageClick()"
 >
@@ -7,6 +9,11 @@
 
 <span>{{ $currentPage() }} out of {{ $totalPages() }}</span>
 
-<button [disabled]="$nextPageUrl() === null" (click)="onNextPageClick()">
+<button
+  class="pagination-button"
+  dsn-button
+  [disabled]="$nextPageUrl() === null"
+  (click)="onNextPageClick()"
+>
   &#8594;
 </button>

@@ -7,23 +7,10 @@
   gap: 24px;
 }
 
-.heading {
-  font-size: 3.125rem;
-  color: var(--primary-color);
-  font-weight: 500;
-  line-height: 100%;
-  letter-spacing: -0.125rem;
-  margin: 0;
-}
-
-.subheading {
-  color: var(--text-color);
-  margin-bottom: 0;
-}
-
 .content {
   flex: 1;
   display: flex;
+  justify-content: center;
 }
 
 .pill-group {
@@ -68,24 +55,4 @@
 .pill-group .pill:nth-child(6n + 4),
 .pill-group .pill:nth-child(6n + 5) {
   --pill-accent: var(--hot-red);
-}
-
-.pill-group svg {
-  margin-inline-start: 0.25rem;
-}
-
-.social-links {
-  display: flex;
-  align-items: center;
-  gap: 0.73rem;
-  margin-top: 1.5rem;
-}
-
-.social-links path {
-  transition: fill 0.3s ease;
-  fill: var(--gray-400);
-}
-
-.social-links a:hover svg path {
-  fill: var(--gray-900);
 }
