@@ -1,16 +1,26 @@
 <header class="header">
   <h1 class="heading">Welcome to Disney characters App</h1>
-  <p class="subheading">Here you can get information on Disney characters.</p>
+  <p class="subheading">
+    Here you can get information on Disney characters provided by
+    <a dsn-link href="https://disneyapi.dev" target="_blank"
+      >https://disneyapi.dev</a
+    >
+  </p>
 </header>
 
-<shared-input class="search-input">
-  <input
-    type="text"
-    placeholder="Search by name, enter min 3 characters"
-    dsnInputControl
-  />
-  <span shared-input-suffix>&cross;</span>
-</shared-input>
+<div class="controls">
+  <shared-input class="search-input">
+    <input
+      type="text"
+      placeholder="Search by name, enter min 3 characters"
+      dsnInputControl
+      [formControl]="searchControl"
+    />
+    <span shared-input-suffix (click)="onClearSearch()">&cross;</span>
+  </shared-input>
+
+  <ng-container *ngTemplateOutlet="pagination"></ng-container>
+</div>
 
 @for (character of $list(); track character._id) {
 <characters-list-item
@@ -20,11 +30,15 @@
 />
 }
 
-<characters-list-pagination
-  [currentPage]="$currentPage()"
-  [totalPages]="$totalPages()"
-  [nextPageUrl]="$nextPageUrl()"
-  [previousPageUrl]="$previousPageUrl()"
-  (nextPageClicked)="onNextPageClick()"
-  (previousPageClicked)="onPreviousPageClick()"
-/>
+<ng-container *ngTemplateOutlet="pagination"></ng-container>
+
+<ng-template #pagination>
+  <characters-list-pagination
+    [currentPage]="$currentPage()"
+    [totalPages]="$totalPages()"
+    [nextPageUrl]="$nextPageUrl()"
+    [previousPageUrl]="$previousPageUrl()"
+    (nextPageClicked)="onNextPageClick()"
+    (previousPageClicked)="onPreviousPageClick()"
+  />
+</ng-template>

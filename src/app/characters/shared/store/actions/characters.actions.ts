@@ -22,5 +22,8 @@ export const CharactersActions = createActionGroup({
     }>(),
     'Load Previous Page Failure': props<{ error: unknown }>(),
     'Set Selected Character': props<{ character: Character }>(),
+    'Start Search': props<{ query: string }>(),
+    'Search Success': props<{ response: PaginatedResponse<Character> }>(),
+    'Search Failure': props<{ error: unknown }>(),
   },
 });

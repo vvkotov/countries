@@ -18,13 +18,7 @@
     @for(prop of $propsToDisplay(); track prop.label) {
     <div class="card-body__section">
       <span class="card-body__section-title">{{ prop.label }}:</span>
-      <div>
-        @for(item of prop.value; track item; let isLast = $last) {
-        <span>{{ item }}</span>
-        @if (!isLast) {
-        <span>, </span>
-        } }
-      </div>
+      <span>{{ prop.value }}</span>
     </div>
     }
 

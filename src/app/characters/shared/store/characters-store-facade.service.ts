@@ -50,4 +50,8 @@ export class CharactersStoreFacadeService {
   setSelectedCharacter(character: Character): void {
     this.store$.dispatch(CharactersActions.setSelectedCharacter({ character }));
   }
+
+  setSearch(query: string): void {
+    this.store$.dispatch(CharactersActions.startSearch({ query }));
+  }
 }

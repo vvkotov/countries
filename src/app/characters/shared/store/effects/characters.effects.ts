@@ -1,6 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap, withLatestFrom } from 'rxjs/operators';
+import {
+  catchError,
+  map,
+  concatMap,
+  withLatestFrom,
+  switchMap,
+} from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { CharactersActions } from '../actions/characters.actions';
@@ -60,6 +66,18 @@ export class CharactersEffects {
           catchError((error) =>
             of(CharactersActions.loadPreviousPageFailure({ error }))
           )
+        )
+      )
+    );
+  });
+
+  searchCharacters$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CharactersActions.startSearch),
+      switchMap(({ query }) =>
+        this.charactersApiService.searchCharacters(query).pipe(
+          map((response) => CharactersActions.searchSuccess({ response })),
+          catchError((error) => of(CharactersActions.searchFailure({ error })))
         )
       )
     );

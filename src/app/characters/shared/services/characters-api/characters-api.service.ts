@@ -22,4 +22,12 @@ export class CharactersApiService {
   getPageByUrl(url: string): Observable<PaginatedResponse<Character>> {
     return this.httpClient.get<PaginatedResponse<Character>>(url);
   }
+
+  searchCharacters(name: string): Observable<PaginatedResponse<Character>> {
+    const params = { name };
+    return this.httpClient.get<PaginatedResponse<Character>>(
+      `${this.baseUrl}`,
+      { params }
+    );
+  }
 }

@@ -19,13 +19,7 @@
 
   <div class="additional-info">
     <span>Films:</span>
-    <div>
-      @for(film of $character().films; track film; let isLast = $last) {
-      <span>{{ film }}</span>
-      @if (!isLast) {
-      <span>, </span>
-      } }
-    </div>
+    <div class="additional-info__films-label">{{ $filmsLabel() }}</div>
   </div>
 </div>
 }

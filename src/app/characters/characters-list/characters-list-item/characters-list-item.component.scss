@@ -1,6 +1,6 @@
 :host {
   display: block;
-  height: 120px;
+  height: 130px;
   padding: 12px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
@@ -55,6 +55,14 @@
   display: flex;
   gap: 8px;
   color: var(--text-color);
+}
+
+.additional-info__films-label {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 @keyframes skeleton-loading {

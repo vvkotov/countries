@@ -44,6 +44,7 @@ export const charactersReducer = createReducer(
     CharactersActions.loadCharacters,
     CharactersActions.loadNextPage,
     CharactersActions.loadPreviousPage,
+    CharactersActions.startSearch,
     (state) => ({
       ...state,
       isListLoading: true,
@@ -85,9 +86,26 @@ export const charactersReducer = createReducer(
   ),
 
   on(
+    CharactersActions.searchSuccess,
+    (
+      state: CharactersState,
+      { response }: { response: PaginatedResponse<Character> }
+    ): CharactersState => {
+      const updatedCommonFields = loadCharactersSuccess(state, { response });
+      const currentPage = 1;
+
+      return {
+        ...updatedCommonFields,
+        currentPage,
+      };
+    }
+  ),
+
+  on(
     CharactersActions.loadCharactersFailure,
     CharactersActions.loadNextPageFailure,
     CharactersActions.loadPreviousPageFailure,
+    CharactersActions.searchFailure,
     (state) => ({
       ...state,
       isListLoading: false,

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Character } from '../shared/models';
@@ -12,7 +17,11 @@ import {
   InputComponent,
   InputControlDirective,
 } from '@shared/components/input';
-
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, filter } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { LinkComponent } from '@shared/components/link';
+import { NgTemplateOutlet } from '@angular/common';
 @Component({
   selector: 'characters-list',
   imports: [
@@ -20,13 +29,17 @@ import {
     CharactersListPaginationComponent,
     InputComponent,
     InputControlDirective,
+    LinkComponent,
     CharactersStoreModule,
+    ReactiveFormsModule,
+    NgTemplateOutlet,
   ],
   templateUrl: './characters-list.component.html',
   styleUrl: './characters-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharactersListComponent {
+  private readonly destroyRef = inject(DestroyRef);
   private readonly router = inject(Router);
   private readonly charactersStoreFacadeService = inject(
     CharactersStoreFacadeService
@@ -41,10 +54,14 @@ export class CharactersListComponent {
   readonly $totalPages = this.charactersStoreFacadeService.$totalPages;
   readonly $isDataLoaded = this.charactersStoreFacadeService.$isDataLoaded;
 
+  readonly searchControl = new FormControl<string>('', { nonNullable: true });
+
   ngOnInit(): void {
     if (!this.$isDataLoaded()) {
       this.charactersStoreFacadeService.loadFirstPage();
     }
+
+    this.listenToSearchChanges();
   }
 
   onNextPageClick(): void {
@@ -58,5 +75,23 @@ export class CharactersListComponent {
   onCharacterClick(character: Character): void {
     this.charactersStoreFacadeService.setSelectedCharacter(character);
     this.router.navigate(['/character', character._id]);
+  }
+
+  onClearSearch(): void {
+    this.searchControl.reset('', { emitEvent: false });
+  }
+
+  private listenToSearchChanges(): void {
+    const byQueryLength = (query: string): boolean => query.length >= 3;
+
+    this.searchControl.valueChanges
+      .pipe(
+        debounceTime(300),
+        filter(byQueryLength),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe((value) => {
+        this.charactersStoreFacadeService.setSearch(value);
+      });
   }
 }

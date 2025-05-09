@@ -31,15 +31,15 @@ export class CharacterDetailsComponent implements OnInit {
   protected readonly $propsToDisplay = computed(() => [
     {
       label: 'Films',
-      value: this.$character()?.films || [],
+      value: (this.$character()?.films || []).join('; '),
     },
     {
       label: 'TV Shows',
-      value: this.$character()?.tvShows || [],
+      value: (this.$character()?.tvShows || []).join('; '),
     },
     {
       label: 'Video Games',
-      value: this.$character()?.videoGames || [],
+      value: (this.$character()?.videoGames || []).join('; '),
     },
   ]);
 
