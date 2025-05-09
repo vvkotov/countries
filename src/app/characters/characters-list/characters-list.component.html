@@ -3,6 +3,15 @@
   <p class="subheading">Here you can get information on Disney characters.</p>
 </header>
 
+<shared-input class="search-input">
+  <input
+    type="text"
+    placeholder="Search by name, enter min 3 characters"
+    dsnInputControl
+  />
+  <span shared-input-suffix>&cross;</span>
+</shared-input>
+
 @for (character of $list(); track character._id) {
 <characters-list-item
   [character]="character"

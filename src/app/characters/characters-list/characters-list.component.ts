@@ -8,12 +8,18 @@ import {
   CharactersStoreFacadeService,
   CharactersStoreModule,
 } from '../shared/store';
+import {
+  InputComponent,
+  InputControlDirective,
+} from '@shared/components/input';
 
 @Component({
   selector: 'characters-list',
   imports: [
     CharactersListItemComponent,
     CharactersListPaginationComponent,
+    InputComponent,
+    InputControlDirective,
     CharactersStoreModule,
   ],
   templateUrl: './characters-list.component.html',

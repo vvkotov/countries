@@ -16,7 +16,7 @@
   }
 
   &:active {
-    color: oklch(40% 0.22 305.88);
+    color: var(--primary-color-focused);
   }
 
   &:focus-visible {

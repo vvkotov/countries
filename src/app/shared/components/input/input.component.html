@@ -1,0 +1,12 @@
+<label
+  class="input__container"
+  [class.input__container--focused]="$isFocused && $isFocused()"
+>
+  <div class="input">
+    <ng-content select="input" />
+
+    <div class="input__suffix">
+      <ng-content select="[shared-input-suffix]" />
+    </div>
+  </div>
+</label>
