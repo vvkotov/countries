@@ -1,6 +1,7 @@
 <button
   class="pagination-button"
   dsn-button
+  type="button"
   [disabled]="$previousPageUrl() === null"
   (click)="onPreviousPageClick()"
 >
@@ -12,6 +13,7 @@
 <button
   class="pagination-button"
   dsn-button
+  type="button"
   [disabled]="$nextPageUrl() === null"
   (click)="onNextPageClick()"
 >

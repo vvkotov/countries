@@ -1,3 +1,38 @@
-<p>character-details works!</p>
+@let character = $character(); @if (character) {
+<div class="card">
+  <div class="card-header">
+    <div class="card-header__title">
+      <button
+        dsn-button
+        class="card-header__back-button"
+        type="button"
+        (click)="goBack()"
+      >
+        &#8592;
+      </button>
+      <h1 class="card-header__title-text">{{ character.name }}</h1>
+    </div>
+    <img [src]="character.imageUrl" [alt]="character.name" />
+  </div>
+  <div class="card-body">
+    @for(prop of $propsToDisplay(); track prop.label) {
+    <div class="card-body__section">
+      <span class="card-body__section-title">{{ prop.label }}:</span>
+      <div>
+        @for(item of prop.value; track item; let isLast = $last) {
+        <span>{{ item }}</span>
+        @if (!isLast) {
+        <span>, </span>
+        } }
+      </div>
+    </div>
+    }
 
-<p>{{ $character()?.name }}</p>
+    <div class="card-body__section">
+      <a dsn-link href="{{ character.sourceUrl }}" target="_blank"
+        >More info on Disney Fandom</a
+      >
+    </div>
+  </div>
+</div>
+}

@@ -41,15 +41,15 @@ export class CharactersListComponent {
     }
   }
 
-  onNextPageClick() {
+  onNextPageClick(): void {
     this.charactersStoreFacadeService.loadNextPage();
   }
 
-  onPreviousPageClick() {
+  onPreviousPageClick(): void {
     this.charactersStoreFacadeService.loadPreviousPage();
   }
 
-  onCharacterClick(character: Character) {
+  onCharacterClick(character: Character): void {
     this.charactersStoreFacadeService.setSelectedCharacter(character);
     this.router.navigate(['/character', character._id]);
   }

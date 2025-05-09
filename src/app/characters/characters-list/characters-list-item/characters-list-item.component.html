@@ -1,5 +1,31 @@
-@if ($isLoading()) {
+@if ($isLoading() && !$character()) {
 <div class="skeleton"></div>
 } @else {
-<div>{{ $character()?.name }}</div>
+<div class="card">
+  <div class="basic-info">
+    <div class="img-preview">
+      @if ($character().imageUrl) {
+      <img [ngSrc]="$character().imageUrl" [alt]="$character().name" fill />
+      } @else {
+      <img
+        [src]="placeholderImage"
+        [alt]="$character().name"
+        class="placeholder-img"
+      />
+      }
+    </div>
+    <span class="name">{{ $character().name }}</span>
+  </div>
+
+  <div class="additional-info">
+    <span>Films:</span>
+    <div>
+      @for(film of $character().films; track film; let isLast = $last) {
+      <span>{{ film }}</span>
+      @if (!isLast) {
+      <span>, </span>
+      } }
+    </div>
+  </div>
+</div>
 }
