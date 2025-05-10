@@ -25,5 +25,6 @@ export const CharactersActions = createActionGroup({
     'Start Search': props<{ query: string }>(),
     'Search Success': props<{ response: PaginatedResponse<Character> }>(),
     'Search Failure': props<{ error: unknown }>(),
+    'Clear Search': emptyProps(),
   },
 });

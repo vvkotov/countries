@@ -38,3 +38,7 @@ export const getIsDataLoaded = createSelector(
   selectCharactersState,
   ({ isDataLoaded }) => isDataLoaded
 );
+export const getSearchQuery = createSelector(
+  selectCharactersState,
+  ({ searchQuery }) => searchQuery
+);

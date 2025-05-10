@@ -9,4 +9,5 @@ export interface CharactersState {
   currentPage: number;
   selectedCharacter: null | Character;
   isDataLoaded: boolean;
+  searchQuery: string;
 }

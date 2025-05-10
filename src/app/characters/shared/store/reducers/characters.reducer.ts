@@ -15,6 +15,7 @@ export const initialState: CharactersState = {
   selectedCharacter: null,
   isListLoading: false,
   isDataLoaded: false,
+  searchQuery: '',
 };
 
 const fixProtocol = (url: string | null): string | null => {
@@ -115,5 +116,15 @@ export const charactersReducer = createReducer(
   on(CharactersActions.setSelectedCharacter, (state, { character }) => ({
     ...state,
     selectedCharacter: character,
+  })),
+
+  on(CharactersActions.clearSearch, (state) => ({
+    ...state,
+    searchQuery: '',
+  })),
+
+  on(CharactersActions.startSearch, (state, { query }) => ({
+    ...state,
+    searchQuery: query,
   }))
 );

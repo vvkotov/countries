@@ -61,6 +61,8 @@ export class CharactersListComponent {
       this.charactersStoreFacadeService.loadFirstPage();
     }
 
+    this.loadData();
+    this.setSearchQuery();
     this.listenToSearchChanges();
   }
 
@@ -79,6 +81,20 @@ export class CharactersListComponent {
 
   onClearSearch(): void {
     this.searchControl.reset('', { emitEvent: false });
+    this.charactersStoreFacadeService.clearSearch();
+    this.charactersStoreFacadeService.loadFirstPage();
+  }
+
+  private loadData(): void {
+    if (this.$isDataLoaded()) return;
+
+    this.charactersStoreFacadeService.loadFirstPage();
+  }
+
+  private setSearchQuery(): void {
+    this.searchControl.setValue(
+      this.charactersStoreFacadeService.$searchQuery()
+    );
   }
 
   private listenToSearchChanges(): void {

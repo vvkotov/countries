@@ -13,6 +13,7 @@ import {
   getTotalPages,
   getSelectedCharacter,
   getIsDataLoaded,
+  getSearchQuery,
 } from './selectors/characters.selectors';
 import { Observable } from 'rxjs';
 
@@ -34,6 +35,7 @@ export class CharactersStoreFacadeService {
   $selectedCharacter: Signal<Character | null> =
     this.store$.selectSignal(getSelectedCharacter);
   $isDataLoaded: Signal<boolean> = this.store$.selectSignal(getIsDataLoaded);
+  $searchQuery: Signal<string> = this.store$.selectSignal(getSearchQuery);
 
   loadFirstPage(): void {
     this.store$.dispatch(CharactersActions.loadCharacters());
@@ -53,5 +55,9 @@ export class CharactersStoreFacadeService {
 
   setSearch(query: string): void {
     this.store$.dispatch(CharactersActions.startSearch({ query }));
+  }
+
+  clearSearch(): void {
+    this.store$.dispatch(CharactersActions.clearSearch());
   }
 }
