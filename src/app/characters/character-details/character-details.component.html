@@ -1,18 +1,18 @@
 @let character = $character(); @if (character) {
 <div class="card">
   <div class="card-header">
+    <button
+      dsn-button
+      class="card-header__back-button"
+      type="button"
+      (click)="goBack()"
+    >
+      &#8592;
+    </button>
     <div class="card-header__title">
-      <button
-        dsn-button
-        class="card-header__back-button"
-        type="button"
-        (click)="goBack()"
-      >
-        &#8592;
-      </button>
       <h1 class="card-header__title-text">{{ character.name }}</h1>
+      <img [src]="character.imageUrl" [alt]="character.name" />
     </div>
-    <img [src]="character.imageUrl" [alt]="character.name" />
   </div>
   <div class="card-body">
     @for(prop of $propsToDisplay(); track prop.label) {

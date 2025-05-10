@@ -1,6 +1,9 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
 .card {
-  min-width: 300px;
-  max-width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,15 +15,18 @@
 
 .card-header {
   display: flex;
-  flex-direction: column;
+  width: 100%;
   gap: 16px;
 }
 
 .card-header__title {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 16px;
   color: var(--primary-color);
+
+  width: 100%;
 }
 
 .card-header__title-text {
@@ -29,7 +35,7 @@
 
 .card-header__back-button {
   font-size: 24px;
-  align-self: center;
+  align-self: flex-start;
 }
 
 .card-body {
