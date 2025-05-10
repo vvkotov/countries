@@ -5,15 +5,23 @@ import { PaginatedResponse } from '@shared/models/paginated-response.model';
 import { Character } from '../../models';
 
 export const charactersFeatureKey = 'characters';
+const initialStubData: Character[] = Array.from(
+  { length: 10 },
+  (_, i) =>
+    ({
+      _id: i,
+      films: [],
+    } as unknown as Character)
+);
 
 export const initialState: CharactersState = {
-  data: [],
+  data: initialStubData,
   nextPageUrl: null,
   previousPageUrl: null,
   totalPages: 0,
   currentPage: 1,
   selectedCharacter: null,
-  isListLoading: false,
+  isListLoading: true,
   isDataLoaded: false,
   searchQuery: '',
 };

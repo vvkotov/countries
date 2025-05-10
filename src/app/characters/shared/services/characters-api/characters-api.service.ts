@@ -14,8 +14,10 @@ export class CharactersApiService {
   private readonly baseUrl = 'https://api.disneyapi.dev/character';
 
   getCharacters(): Observable<PaginatedResponse<Character>> {
+    const params = { page: 1, pageSize: 10 };
     return this.httpClient.get<PaginatedResponse<Character>>(
-      `${this.baseUrl}?page=1&pageSize=10`
+      `${this.baseUrl}`,
+      { params }
     );
   }
 
