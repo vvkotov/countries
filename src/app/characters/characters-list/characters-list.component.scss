@@ -35,3 +35,13 @@
 .search-input {
   flex: 1;
 }
+
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+
+    .search-input {
+      width: 100%;
+    }
+  }
+}
