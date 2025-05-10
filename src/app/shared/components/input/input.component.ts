@@ -17,8 +17,7 @@ import { InputControlDirective } from './shared/directives';
   encapsulation: ViewEncapsulation.None,
 })
 export class InputComponent implements AfterContentInit {
-  private inputControlDirective: Signal<InputControlDirective | undefined> =
-    contentChild(InputControlDirective);
+  private inputControlDirective: Signal<InputControlDirective | undefined> = contentChild(InputControlDirective);
 
   $isFocused!: Signal<boolean> | undefined;
 

@@ -4,7 +4,7 @@ import { selectCharactersState } from './characters.selectors';
 describe('Characters Selectors', () => {
   it('should select the feature state', () => {
     const result = selectCharactersState({
-      [fromCharacters.charactersFeatureKey]: {}
+      [fromCharacters.charactersFeatureKey]: {},
     });
 
     expect(result).toEqual({});

@@ -1,12 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import {
-  catchError,
-  map,
-  concatMap,
-  withLatestFrom,
-  switchMap,
-} from 'rxjs/operators';
+import { catchError, map, concatMap, withLatestFrom, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { CharactersActions } from '../actions/characters.actions';
@@ -17,23 +11,17 @@ import { CharactersStoreFacadeService } from '../characters-store-facade.service
 export class CharactersEffects {
   private readonly actions$ = inject(Actions);
   private readonly charactersApiService = inject(CharactersApiService);
-  private readonly charactersStoreFacadeService = inject(
-    CharactersStoreFacadeService
-  );
+  private readonly charactersStoreFacadeService = inject(CharactersStoreFacadeService);
 
   loadCharacterss$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CharactersActions.loadCharacters),
       concatMap(() =>
         this.charactersApiService.getCharacters().pipe(
-          map((response) =>
-            CharactersActions.loadCharactersSuccess({ response })
-          ),
-          catchError((error) =>
-            of(CharactersActions.loadCharactersFailure({ error }))
-          )
-        )
-      )
+          map((response) => CharactersActions.loadCharactersSuccess({ response })),
+          catchError((error) => of(CharactersActions.loadCharactersFailure({ error }))),
+        ),
+      ),
     );
   });
 
@@ -43,14 +31,10 @@ export class CharactersEffects {
       withLatestFrom(this.charactersStoreFacadeService.nextPageUrl$),
       switchMap(([_, nextPageUrl]) =>
         this.charactersApiService.getPageByUrl(nextPageUrl!).pipe(
-          map((response) =>
-            CharactersActions.loadNextPageSuccess({ response })
-          ),
-          catchError((error) =>
-            of(CharactersActions.loadNextPageFailure({ error }))
-          )
-        )
-      )
+          map((response) => CharactersActions.loadNextPageSuccess({ response })),
+          catchError((error) => of(CharactersActions.loadNextPageFailure({ error }))),
+        ),
+      ),
     );
   });
 
@@ -60,14 +44,10 @@ export class CharactersEffects {
       withLatestFrom(this.charactersStoreFacadeService.previousPageUrl$),
       switchMap(([_, previousPageUrl]) =>
         this.charactersApiService.getPageByUrl(previousPageUrl!).pipe(
-          map((response) =>
-            CharactersActions.loadPreviousPageSuccess({ response })
-          ),
-          catchError((error) =>
-            of(CharactersActions.loadPreviousPageFailure({ error }))
-          )
-        )
-      )
+          map((response) => CharactersActions.loadPreviousPageSuccess({ response })),
+          catchError((error) => of(CharactersActions.loadPreviousPageFailure({ error }))),
+        ),
+      ),
     );
   });
 
@@ -77,9 +57,9 @@ export class CharactersEffects {
       switchMap(({ query }) =>
         this.charactersApiService.searchCharacters(query).pipe(
           map((response) => CharactersActions.searchSuccess({ response })),
-          catchError((error) => of(CharactersActions.searchFailure({ error })))
-        )
-      )
+          catchError((error) => of(CharactersActions.searchFailure({ error }))),
+        ),
+      ),
     );
   });
 }

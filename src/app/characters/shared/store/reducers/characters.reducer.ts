@@ -11,7 +11,7 @@ const initialStubData: Character[] = Array.from(
     ({
       _id: i,
       films: [],
-    } as unknown as Character)
+    }) as unknown as Character,
 );
 
 export const initialState: CharactersState = {
@@ -34,7 +34,7 @@ const fixProtocol = (url: string | null): string | null => {
 
 const loadCharactersSuccess = (
   state: CharactersState,
-  { response }: { response: PaginatedResponse<Character> }
+  { response }: { response: PaginatedResponse<Character> },
 ): CharactersState => {
   return {
     ...state,
@@ -57,17 +57,14 @@ export const charactersReducer = createReducer(
     (state) => ({
       ...state,
       isListLoading: true,
-    })
+    }),
   ),
 
   on(CharactersActions.loadCharactersSuccess, loadCharactersSuccess),
 
   on(
     CharactersActions.loadNextPageSuccess,
-    (
-      state: CharactersState,
-      { response }: { response: PaginatedResponse<Character> }
-    ): CharactersState => {
+    (state: CharactersState, { response }: { response: PaginatedResponse<Character> }): CharactersState => {
       const updatedCommonFields = loadCharactersSuccess(state, { response });
       const currentPage = updatedCommonFields.currentPage + 1;
 
@@ -75,15 +72,12 @@ export const charactersReducer = createReducer(
         ...updatedCommonFields,
         currentPage,
       };
-    }
+    },
   ),
 
   on(
     CharactersActions.loadPreviousPageSuccess,
-    (
-      state: CharactersState,
-      { response }: { response: PaginatedResponse<Character> }
-    ): CharactersState => {
+    (state: CharactersState, { response }: { response: PaginatedResponse<Character> }): CharactersState => {
       const updatedCommonFields = loadCharactersSuccess(state, { response });
       const currentPage = updatedCommonFields.currentPage - 1;
 
@@ -91,15 +85,12 @@ export const charactersReducer = createReducer(
         ...updatedCommonFields,
         currentPage,
       };
-    }
+    },
   ),
 
   on(
     CharactersActions.searchSuccess,
-    (
-      state: CharactersState,
-      { response }: { response: PaginatedResponse<Character> }
-    ): CharactersState => {
+    (state: CharactersState, { response }: { response: PaginatedResponse<Character> }): CharactersState => {
       const updatedCommonFields = loadCharactersSuccess(state, { response });
       const currentPage = 1;
 
@@ -107,7 +98,7 @@ export const charactersReducer = createReducer(
         ...updatedCommonFields,
         currentPage,
       };
-    }
+    },
   ),
 
   on(
@@ -118,7 +109,7 @@ export const charactersReducer = createReducer(
     (state) => ({
       ...state,
       isListLoading: false,
-    })
+    }),
   ),
 
   on(CharactersActions.setSelectedCharacter, (state, { character }) => ({
@@ -134,5 +125,5 @@ export const charactersReducer = createReducer(
   on(CharactersActions.startSearch, (state, { query }) => ({
     ...state,
     searchQuery: query,
-  }))
+  })),
 );

@@ -1,16 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import {
-  CharactersStoreFacadeService,
-  CharactersStoreModule,
-} from '../shared/store';
+import { CharactersStoreFacadeService, CharactersStoreModule } from '../shared/store';
 import { ButtonComponent } from '@shared/components/button';
 import { LinkComponent } from '@shared/components/link';
 @Component({
@@ -21,13 +12,10 @@ import { LinkComponent } from '@shared/components/link';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharacterDetailsComponent implements OnInit {
-  private readonly charactersStoreFacadeService = inject(
-    CharactersStoreFacadeService
-  );
+  private readonly charactersStoreFacadeService = inject(CharactersStoreFacadeService);
   private readonly router = inject(Router);
 
-  protected readonly $character =
-    this.charactersStoreFacadeService.$selectedCharacter;
+  protected readonly $character = this.charactersStoreFacadeService.$selectedCharacter;
   protected readonly $propsToDisplay = computed(() => [
     {
       label: 'Films',

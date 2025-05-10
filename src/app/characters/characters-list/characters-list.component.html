@@ -2,18 +2,16 @@
   <h1 class="heading">Welcome to Disney characters App</h1>
   <p class="subheading">
     Here you can get information on Disney characters provided by
-    <a dsn-link href="https://disneyapi.dev" target="_blank"
-      >https://disneyapi.dev</a
-    >
+    <a dsn-link href="https://disneyapi.dev" target="_blank">https://disneyapi.dev</a>
   </p>
 </header>
 
 <div class="controls">
   <shared-input class="search-input">
     <input
-      type="text"
-      placeholder="Search by name, enter min 3 characters"
       dsnInputControl
+      placeholder="Search by name, enter min 3 characters"
+      type="text"
       [formControl]="searchControl"
     />
     <span shared-input-suffix (click)="onClearSearch()">&cross;</span>
@@ -23,11 +21,7 @@
 </div>
 
 @for (character of $list(); track character._id) {
-<characters-list-item
-  [character]="character"
-  [isLoading]="$isListLoading()"
-  (click)="onCharacterClick(character)"
-/>
+  <characters-list-item [character]="character" [isLoading]="$isListLoading()" (click)="onCharacterClick(character)" />
 }
 
 <ng-container *ngTemplateOutlet="pagination"></ng-container>
@@ -35,9 +29,9 @@
 <ng-template #pagination>
   <characters-list-pagination
     [currentPage]="$currentPage()"
-    [totalPages]="$totalPages()"
     [nextPageUrl]="$nextPageUrl()"
     [previousPageUrl]="$previousPageUrl()"
+    [totalPages]="$totalPages()"
     (nextPageClicked)="onNextPageClick()"
     (previousPageClicked)="onPreviousPageClick()"
   />

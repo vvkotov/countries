@@ -83,18 +83,13 @@
   border-radius: 8px;
 
   &::after {
-    content: "";
+    content: '';
 
     position: absolute;
     inset: 0;
     // transform: translate(-100%);
 
-    background: linear-gradient(
-      90deg,
-      rgb(255 255 255 / 0%),
-      rgb(255 255 255 / 70%),
-      rgb(255 255 255 / 0%)
-    );
+    background: linear-gradient(90deg, rgb(255 255 255 / 0%), rgb(255 255 255 / 70%), rgb(255 255 255 / 0%));
 
     animation: skeleton-loading 1s infinite linear;
   }

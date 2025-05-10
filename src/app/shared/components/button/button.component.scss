@@ -1,20 +1,15 @@
-@mixin button-appearance(
-  $background-color,
-  $border-color: "",
-  $color: "",
-  $box-shadow: ""
-) {
+@mixin button-appearance($background-color, $border-color: '', $color: '', $box-shadow: '') {
   background: $background-color;
 
-  @if $border-color != "" {
+  @if $border-color != '' {
     border-color: $border-color;
   }
 
-  @if $color != "" {
+  @if $color != '' {
     color: $color;
   }
 
-  @if $box-shadow != "" {
+  @if $box-shadow != '' {
     box-shadow: $box-shadow;
   }
 }
@@ -36,12 +31,14 @@
 
   padding: 4px 10px;
 
-  transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  transition:
+    background-color 0.1s ease-in-out,
+    box-shadow 0.1s ease-in-out;
 
   &:disabled {
     cursor: not-allowed;
 
-    @include button-appearance(#fff, #eeeaf0, #d7d0dd, "");
+    @include button-appearance(#fff, #eeeaf0, #d7d0dd, '');
   }
 
   &:focus-visible:not(:disabled) {
@@ -49,15 +46,10 @@
   }
 
   &:hover:not(:disabled) {
-    @include button-appearance(
-      var(--bg-color),
-      var(--border-color),
-      var(--text-color),
-      var(--focus-shadow)
-    );
+    @include button-appearance(var(--bg-color), var(--border-color), var(--text-color), var(--focus-shadow));
   }
 
   &:active:not(:disabled) {
-    @include button-appearance(#f5f2f7, "", var(--gray-700), none);
+    @include button-appearance(#f5f2f7, '', var(--gray-700), none);
   }
 }

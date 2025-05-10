@@ -8,9 +8,8 @@ describe('CharactersListPaginationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CharactersListPaginationComponent]
-    })
-    .compileComponents();
+      imports: [CharactersListPaginationComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CharactersListPaginationComponent);
     component = fixture.componentInstance;

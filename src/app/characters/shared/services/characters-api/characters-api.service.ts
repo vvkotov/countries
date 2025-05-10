@@ -15,10 +15,7 @@ export class CharactersApiService {
 
   getCharacters(): Observable<PaginatedResponse<Character>> {
     const params = { page: 1, pageSize: 10 };
-    return this.httpClient.get<PaginatedResponse<Character>>(
-      `${this.baseUrl}`,
-      { params }
-    );
+    return this.httpClient.get<PaginatedResponse<Character>>(`${this.baseUrl}`, { params });
   }
 
   getPageByUrl(url: string): Observable<PaginatedResponse<Character>> {
@@ -27,9 +24,6 @@ export class CharactersApiService {
 
   searchCharacters(name: string): Observable<PaginatedResponse<Character>> {
     const params = { name };
-    return this.httpClient.get<PaginatedResponse<Character>>(
-      `${this.baseUrl}`,
-      { params }
-    );
+    return this.httpClient.get<PaginatedResponse<Character>>(`${this.baseUrl}`, { params });
   }
 }

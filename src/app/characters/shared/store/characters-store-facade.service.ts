@@ -24,16 +24,12 @@ export class CharactersStoreFacadeService {
   $items: Signal<Character[]> = this.store$.selectSignal(getItems);
   $isListLoading: Signal<boolean> = this.store$.selectSignal(getIsListLoading);
   $currentPage: Signal<number> = this.store$.selectSignal(getCurrentPage);
-  $nextPageUrl: Signal<string | null> =
-    this.store$.selectSignal(getNextPageUrl);
+  $nextPageUrl: Signal<string | null> = this.store$.selectSignal(getNextPageUrl);
   nextPageUrl$: Observable<string | null> = this.store$.select(getNextPageUrl);
-  $previousPageUrl: Signal<string | null> =
-    this.store$.selectSignal(getPreviousPageUrl);
-  previousPageUrl$: Observable<string | null> =
-    this.store$.select(getPreviousPageUrl);
+  $previousPageUrl: Signal<string | null> = this.store$.selectSignal(getPreviousPageUrl);
+  previousPageUrl$: Observable<string | null> = this.store$.select(getPreviousPageUrl);
   $totalPages: Signal<number> = this.store$.selectSignal(getTotalPages);
-  $selectedCharacter: Signal<Character | null> =
-    this.store$.selectSignal(getSelectedCharacter);
+  $selectedCharacter: Signal<Character | null> = this.store$.selectSignal(getSelectedCharacter);
   $isDataLoaded: Signal<boolean> = this.store$.selectSignal(getIsDataLoaded);
   $searchQuery: Signal<string> = this.store$.selectSignal(getSearchQuery);
 
