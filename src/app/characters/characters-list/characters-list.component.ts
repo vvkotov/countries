@@ -57,10 +57,6 @@ export class CharactersListComponent {
   readonly searchControl = new FormControl<string>('', { nonNullable: true });
 
   ngOnInit(): void {
-    if (!this.$isDataLoaded()) {
-      this.charactersStoreFacadeService.loadFirstPage();
-    }
-
     this.loadData();
     this.setSearchQuery();
     this.listenToSearchChanges();

@@ -12,7 +12,7 @@ import { of } from 'rxjs';
 import { CharactersActions } from '../actions/characters.actions';
 import { CharactersApiService } from '../../services/characters-api';
 import { CharactersStoreFacadeService } from '../characters-store-facade.service';
-import { getPreviousPageUrl } from '../selectors/characters.selectors';
+
 @Injectable()
 export class CharactersEffects {
   private readonly actions$ = inject(Actions);
@@ -41,7 +41,7 @@ export class CharactersEffects {
     return this.actions$.pipe(
       ofType(CharactersActions.loadNextPage),
       withLatestFrom(this.charactersStoreFacadeService.nextPageUrl$),
-      concatMap(([_, nextPageUrl]) =>
+      switchMap(([_, nextPageUrl]) =>
         this.charactersApiService.getPageByUrl(nextPageUrl!).pipe(
           map((response) =>
             CharactersActions.loadNextPageSuccess({ response })
@@ -58,7 +58,7 @@ export class CharactersEffects {
     return this.actions$.pipe(
       ofType(CharactersActions.loadPreviousPage),
       withLatestFrom(this.charactersStoreFacadeService.previousPageUrl$),
-      concatMap(([_, previousPageUrl]) =>
+      switchMap(([_, previousPageUrl]) =>
         this.charactersApiService.getPageByUrl(previousPageUrl!).pipe(
           map((response) =>
             CharactersActions.loadPreviousPageSuccess({ response })
