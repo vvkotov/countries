@@ -1,0 +1,24 @@
+@let character = $character();
+@if (character) {
+  <div class="card">
+    <div class="card-header">
+      <button class="card-header__back-button" dsn-button type="button" (click)="goBack()">&#8592;</button>
+      <div class="card-header__title">
+        <h1 class="card-header__title-text">{{ character.name }}</h1>
+        <img [alt]="character.name" [src]="character.imageUrl" />
+      </div>
+    </div>
+    <div class="card-body">
+      @for (prop of $propsToDisplay(); track prop.label) {
+        <div class="card-body__section">
+          <span class="card-body__section-title">{{ prop.label }}:</span>
+          <span>{{ prop.value }}</span>
+        </div>
+      }
+
+      <div class="card-body__section">
+        <a dsn-link href="{{ character.sourceUrl }}" target="_blank">More info on Disney Fandom</a>
+      </div>
+    </div>
+  </div>
+}

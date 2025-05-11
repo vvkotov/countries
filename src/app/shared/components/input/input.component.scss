@@ -1,0 +1,50 @@
+shared-input {
+  .input__container {
+    position: relative;
+    display: block;
+
+    &--focused {
+      .input {
+        border-color: var(--primary-color-focused);
+      }
+    }
+  }
+
+  .input {
+    position: relative;
+
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    border-radius: 16px;
+    padding: 4px 12px 4px;
+
+    border: 1px solid var(--border-color);
+  }
+
+  .input__suffix {
+    font-size: 15px;
+    color: var(--primary-color);
+    white-space: nowrap;
+    cursor: pointer;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  input {
+    display: block;
+
+    width: 100%;
+    padding: 5px 0;
+
+    font-size: 15px;
+    color: var(--text-color);
+
+    background: none;
+    border: none;
+    outline: none;
+    caret-color: var(--text-color);
+  }
+}

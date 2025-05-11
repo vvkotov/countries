@@ -1,0 +1,14 @@
+:root {
+  --french-violet: oklch(47.66% 0.246 305.88);
+  --gray-900: oklch(19.37% 0.006 300.98);
+  --gray-700: oklch(36.98% 0.014 302.71);
+  --gray-400: oklch(70.9% 0.015 304.04);
+  --gray-50: rgb(250, 249, 251);
+
+  --primary-color: var(--french-violet);
+  --primary-color-focused: oklch(40% 0.22 305.88);
+  --text-color: var(--gray-700);
+  --border-color: #c9b3fd;
+  --bg-color: var(--gray-50);
+  --focus-shadow: 0 1px 3px rgb(16 24 40 / 10%), 0 1px 2px rgb(16 24 40 / 6%);
+}

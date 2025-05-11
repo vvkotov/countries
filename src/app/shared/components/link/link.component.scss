@@ -1,0 +1,25 @@
+:host {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline;
+  align-items: center;
+  justify-content: space-between;
+
+  text-decoration: none;
+  text-underline-offset: 0.3em;
+  color: var(--primary-color);
+
+  &:hover {
+    color: oklch(55% 0.26 305.88);
+  }
+
+  &:active {
+    color: var(--primary-color-focused);
+  }
+
+  &:focus-visible {
+    outline: 2px solid;
+  }
+}

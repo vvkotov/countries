@@ -1,0 +1,21 @@
+@if ($isLoading()) {
+  <div class="skeleton"></div>
+} @else {
+  <div class="card">
+    <div class="basic-info">
+      <div class="img-preview">
+        @if ($character().imageUrl) {
+          <img fill [alt]="$character().name" [ngSrc]="$character().imageUrl" />
+        } @else {
+          <img class="placeholder-img" [alt]="$character().name" [src]="placeholderImage" />
+        }
+      </div>
+      <span class="name">{{ $character().name }}</span>
+    </div>
+
+    <div class="additional-info">
+      <span>Films:</span>
+      <div class="additional-info__films-label">{{ $filmsLabel() }}</div>
+    </div>
+  </div>
+}

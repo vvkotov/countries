@@ -1,0 +1,55 @@
+@mixin button-appearance($background-color, $border-color: '', $color: '', $box-shadow: '') {
+  background: $background-color;
+
+  @if $border-color != '' {
+    border-color: $border-color;
+  }
+
+  @if $color != '' {
+    color: $color;
+  }
+
+  @if $box-shadow != '' {
+    box-shadow: $box-shadow;
+  }
+}
+
+:host {
+  cursor: pointer;
+  user-select: none;
+
+  position: relative;
+
+  display: inline-flex;
+  max-width: 100%;
+
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  outline: none;
+  color: var(--text-color);
+
+  padding: 4px 10px;
+
+  transition:
+    background-color 0.1s ease-in-out,
+    box-shadow 0.1s ease-in-out;
+
+  &:disabled {
+    cursor: not-allowed;
+
+    @include button-appearance(#fff, #eeeaf0, #d7d0dd, '');
+  }
+
+  &:focus-visible:not(:disabled) {
+    box-shadow: var(--focus-shadow);
+  }
+
+  &:hover:not(:disabled) {
+    @include button-appearance(var(--bg-color), var(--border-color), var(--text-color), var(--focus-shadow));
+  }
+
+  &:active:not(:disabled) {
+    @include button-appearance(#f5f2f7, '', var(--gray-700), none);
+  }
+}
