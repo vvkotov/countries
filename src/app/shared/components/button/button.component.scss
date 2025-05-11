@@ -23,11 +23,11 @@
   display: inline-flex;
   max-width: 100%;
 
-  background-color: #fff;
-  border: 1px solid var(--border-color);
+  background-color: var(--color-button-background);
+  border: 1px solid var(--color-button-border);
   border-radius: 8px;
   outline: none;
-  color: var(--text-color);
+  color: var(--color-text-primary);
 
   padding: 4px 10px;
 
@@ -38,7 +38,7 @@
   &:disabled {
     cursor: not-allowed;
 
-    @include button-appearance(#fff, #eeeaf0, #d7d0dd, '');
+    @include button-appearance(var(--color-button-background), var(--color-gray-100), var(--color-gray-200), '');
   }
 
   &:focus-visible:not(:disabled) {
@@ -46,10 +46,15 @@
   }
 
   &:hover:not(:disabled) {
-    @include button-appearance(var(--bg-color), var(--border-color), var(--text-color), var(--focus-shadow));
+    @include button-appearance(
+      var(--color-button-hover),
+      var(--color-button-border),
+      var(--color-text-primary),
+      var(--focus-shadow)
+    );
   }
 
   &:active:not(:disabled) {
-    @include button-appearance(#f5f2f7, '', var(--gray-700), none);
+    @include button-appearance(var(--color-button-active), '', var(--color-text-primary), none);
   }
 }
