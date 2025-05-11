@@ -32,6 +32,10 @@ const fixProtocol = (url: string | null): string | null => {
   return url.replace('http://', 'https://');
 };
 
+const sortCharacters = (characters: Character[]): Character[] => {
+  return characters.sort((a, b) => a.name.localeCompare(b.name));
+};
+
 const loadCharactersSuccess = (
   state: CharactersState,
   { response }: { response: PaginatedResponse<Character> },
@@ -39,7 +43,7 @@ const loadCharactersSuccess = (
   return {
     ...state,
     isListLoading: false,
-    data: response.data,
+    data: sortCharacters([...response.data]),
     totalPages: response.info.totalPages,
     nextPageUrl: fixProtocol(response.info.nextPage),
     previousPageUrl: fixProtocol(response.info.previousPage),

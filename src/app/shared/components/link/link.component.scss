@@ -3,16 +3,16 @@
 
   position: relative;
 
-  display: inline;
+  display: inline-block;
   align-items: center;
   justify-content: space-between;
 
   text-decoration: none;
   text-underline-offset: 0.3em;
-  color: var(--primary-color);
+  color: var(--color-primary);
 
   &:hover {
-    color: oklch(55% 0.26 305.88);
+    color: var(--color-link-hover);
   }
 
   &:active {

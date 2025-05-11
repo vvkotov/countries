@@ -1,11 +1,11 @@
-import { reducer, initialState } from './characters.reducer';
+import { charactersReducer, initialState } from './characters.reducer';
 
 describe('Characters Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = charactersReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });

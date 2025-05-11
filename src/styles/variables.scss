@@ -1,3 +1,4 @@
+// deprecated
 :root {
   --french-violet: oklch(47.66% 0.246 305.88);
   --gray-900: oklch(19.37% 0.006 300.98);
@@ -8,7 +9,39 @@
   --primary-color: var(--french-violet);
   --primary-color-focused: oklch(40% 0.22 305.88);
   --text-color: var(--gray-700);
-  --border-color: #c9b3fd;
+  --border-color: #cab4fd;
   --bg-color: var(--gray-50);
+  --focus-shadow: 0 1px 3px rgb(16 24 40 / 10%), 0 1px 2px rgb(16 24 40 / 6%);
+}
+
+// new
+:root {
+  // Brand Colors
+  --color-primary: oklch(47.66% 0.246 305.88); // French Violet
+  --color-primary-hover: oklch(0.93 0.0343 298.52);
+  --color-primary-active: oklch(0.86 0.077 298.1);
+  --color-primary-light: oklch(0.81 0.1036 297.9);
+
+  // Neutral Colors
+  --color-white: oklch(100% 0 0);
+  --color-gray-50: oklch(98% 0.005 300);
+  --color-gray-75: oklch(0.96 0.0073 312.3);
+  --color-gray-100: oklch(0.94 0.009 314.78);
+  --color-gray-200: oklch(0.87 0.0192 309.77);
+  --color-gray-700: oklch(0.36 0.0584 309.45);
+
+  // Semantic Colors
+  --color-text-primary: var(--color-gray-700);
+  --color-border: var(--color-primary-light);
+  --color-background: var(--color-gray-50);
+
+  // Component-specific Colors
+  --color-button-background: var(--color-white);
+  --color-button-border: var(--color-border);
+  --color-button-hover: var(--color-gray-50);
+  --color-button-active: var(--color-gray-75);
+  --color-link-hover: oklch(55% 0.26 305.88);
+
+  // Shadows
   --focus-shadow: 0 1px 3px rgb(16 24 40 / 10%), 0 1px 2px rgb(16 24 40 / 6%);
 }

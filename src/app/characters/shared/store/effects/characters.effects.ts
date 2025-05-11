@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 
 import { CharactersActions } from '../actions/characters.actions';
 import { CharactersApiService } from '../../services/characters-api';
-import { CharactersStoreFacadeService } from '../characters-store-facade.service';
+import { CharactersStoreFacadeService } from '../store-facade';
 
 @Injectable()
 export class CharactersEffects {
