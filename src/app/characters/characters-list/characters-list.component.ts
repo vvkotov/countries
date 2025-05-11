@@ -1,16 +1,18 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { Character } from '../shared/models';
-import { CharactersListItemComponent } from './characters-list-item';
-import { CharactersListPaginationComponent } from './characters-list-pagination';
-import { CharactersStoreFacadeService, CharactersStoreModule } from '../shared/store';
-import { InputComponent, InputControlDirective } from '@shared/components/input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, filter } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LinkComponent } from '@shared/components/link';
 import { NgTemplateOutlet } from '@angular/common';
+
+import { InputComponent, InputControlDirective } from '@shared/components/input';
+
+import { Character } from '../shared/models';
+import { CharactersStoreFacadeService, CharactersStoreModule } from '../shared/store';
+import { CharactersListItemComponent } from './characters-list-item';
+import { CharactersListPaginationComponent } from './characters-list-pagination';
+
 @Component({
   selector: 'characters-list',
   imports: [

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { NgOptimizedImage } from '@angular/common';
 
 import { Character } from '../../shared/models';
+
 @Component({
   selector: 'characters-list-item',
   templateUrl: './characters-list-item.component.html',
@@ -23,6 +24,6 @@ export class CharactersListItemComponent {
   $isLoading = input<boolean>(true, { alias: 'isLoading' });
 
   $filmsLabel = computed(() => {
-    return this.$character().films.length > 0 ? this.$character().films.join(', ') : 'No films';
+    return this.$character().films.length > 0 ? this.$character().films.join('; ') : 'No films';
   });
 }

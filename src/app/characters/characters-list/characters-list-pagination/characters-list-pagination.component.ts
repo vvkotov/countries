@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+
 import { ButtonComponent } from '@shared/components/button';
 
 @Component({

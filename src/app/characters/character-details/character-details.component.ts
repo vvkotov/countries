@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CharactersStoreFacadeService, CharactersStoreModule } from '../shared/store';
 import { ButtonComponent } from '@shared/components/button';
 import { LinkComponent } from '@shared/components/link';
+
+import { CharactersStoreFacadeService, CharactersStoreModule } from '../shared/store';
+
 @Component({
   selector: 'character-details',
   imports: [CharactersStoreModule, ButtonComponent, LinkComponent],
