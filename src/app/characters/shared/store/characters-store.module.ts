@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { charactersFeatureKey, charactersReducer } from './reducers/characters.reducer';
 import { CharactersEffects } from './effects/characters.effects';
-import { CharactersStoreFacadeService } from './characters-store-facade.service';
+import { CharactersStoreFacadeService } from './store-facade';
 
 @NgModule({
   imports: [
