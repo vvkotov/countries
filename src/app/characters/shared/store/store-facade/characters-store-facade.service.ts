@@ -1,9 +1,9 @@
 import { inject, Injectable, Signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { CharactersState } from './models';
-import { CharactersActions } from './actions/characters.actions';
-import { Character } from '../models';
+import { CharactersState } from '../models';
+import { CharactersActions } from '../actions/characters.actions';
+import { Character } from '../../models';
 import {
   getCurrentPage,
   getNextPageUrl,
@@ -14,7 +14,7 @@ import {
   getSelectedCharacter,
   getIsDataLoaded,
   getSearchQuery,
-} from './selectors/characters.selectors';
+} from '../selectors/characters.selectors';
 import { Observable } from 'rxjs';
 
 @Injectable()
