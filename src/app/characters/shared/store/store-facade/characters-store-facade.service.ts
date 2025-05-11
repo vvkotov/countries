@@ -1,5 +1,6 @@
 import { inject, Injectable, Signal } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { CharactersState } from '../models';
 import { CharactersActions } from '../actions/characters.actions';
@@ -15,7 +16,6 @@ import {
   getIsDataLoaded,
   getSearchQuery,
 } from '../selectors/characters.selectors';
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class CharactersStoreFacadeService {

@@ -1,5 +1,4 @@
 import { Directive, HostListener, signal } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Directive({
   selector: '[dsnInputControl]',
